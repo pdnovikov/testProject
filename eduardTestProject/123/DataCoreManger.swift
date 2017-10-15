@@ -16,6 +16,7 @@ class DataCoreManger {
         return urls[urls.count-1]
     }()
     
+    //модель бд которая в папке People.xmodel
     lazy var managedObjectModel: NSManagedObjectModel = {
         let modelURL = Bundle.main.url(forResource: "People", withExtension: "momd")!
         return NSManagedObjectModel(contentsOf: modelURL)!
@@ -87,17 +88,5 @@ class DataCoreManger {
         print("Saved Succesfully")
     }
     
-    func saveContext () {
-        if managedObjectContext.hasChanges {
-            do {
-                try managedObjectContext.save()
-            } catch {
-                let nserror = error as NSError
-                NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
-            }
-        }
-    }
-
 }
 
